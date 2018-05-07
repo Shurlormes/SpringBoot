@@ -6,10 +6,12 @@
 </head>
 <body>
 
-	<form th:action="@{/form}" th:object="${userInfo}" method="post">
+	<h2 th:text="#{home.message.welcome}"></h2>
+
+	<form th:action="@{/}" th:object="${userInfo}" method="post">
 		<table>
 			<tr>
-				<td>Name:</td>
+				<td th:text="#{form.label.name}"></td>
 				<td>
 					<input type="text" th:field="*{name}" >
 				</td>
@@ -17,7 +19,7 @@
 			</tr>
 
 			<tr>
-				<td>Email:</td>
+				<td th:text="#{form.label.email}"></td>
 				<td>
 					<input type="text" th:field="*{email}" >
 				</td>
@@ -25,7 +27,7 @@
 			</tr>
 
 			<tr>
-				<td>Telephone:</td>
+				<td th:text="#{form.label.telephone}"></td>
 				<td>
 					<input type="text" th:field="*{telephone}" >
 				</td>
@@ -33,7 +35,7 @@
 			</tr>
 
 			<tr>
-				<td>Address:</td>
+				<td th:text="#{form.label.address}"></td>
 				<td>
 					<input type="text" th:field="*{address}" >
 				</td>
@@ -41,11 +43,20 @@
 			</tr>
 
 			<tr>
-				<td><button type="submit">Submit</button></td>
+				<td><button type="submit" th:text="#{form.submit.button}"></button></td>
 			</tr>
 		</table>
 
 	</form>
 
+	<form action="/language/changeSessionLanguage" method="get">
+		<input name="lang" type="hidden" value="zh"  />
+		<button>切换Session为中文</button>
+	</form>
+
+	<form action="/language/changeSessionLanguage" method="get">
+		<input name="lang" type="hidden" value="en" />
+		<button>切换Session为英文</button>
+	</form>
 </body>
 </html>
