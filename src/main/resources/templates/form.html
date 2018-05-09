@@ -49,14 +49,22 @@
 
 	</form>
 
-	<form action="/language/changeSessionLanguage" method="get">
-		<input name="lang" type="hidden" value="zh"  />
-		<button>切换Session为中文</button>
-	</form>
+	<table>
+		<tr>
+			<td>
+				<form action="/language/changeSessionLanguage" method="get">
+					<input name="lang" type="hidden" value="zh"  />
+					<button>Chinese</button>
+				</form>
+			</td>
+			<td>
+				<form action="/language/changeSessionLanguage" method="get">
+					<input name="lang" type="hidden" value="en" />
+					<button>English</button>
+				</form>
+			</td>
+		</tr>
+	</table>
 
-	<form action="/language/changeSessionLanguage" method="get">
-		<input name="lang" type="hidden" value="en" />
-		<button>切换Session为英文</button>
-	</form>
 </body>
 </html>

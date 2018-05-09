@@ -52,4 +52,14 @@ public class UserInfo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "UserInfo{" +
+			"name='" + name + '\'' +
+			", email='" + email + '\'' +
+			", telephone='" + telephone + '\'' +
+			", address='" + address + '\'' +
+			'}';
+	}
 }
