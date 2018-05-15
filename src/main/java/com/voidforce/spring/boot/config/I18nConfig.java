@@ -1,18 +1,20 @@
 package com.voidforce.spring.boot.config;
 
-import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
-import org.hibernate.validator.resourceloading.PlatformResourceBundleLocator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Locale;
 
 @Configuration
 public class I18nConfig {
+	@Autowired
+	private MessageSource messageSource;
 
 	@Bean
 	public LocaleResolver localeResolver() {
@@ -23,11 +25,8 @@ public class I18nConfig {
 
 	@Bean
 	public Validator validator() {
-		return Validation.byDefaultProvider()
-			.configure()
-			.messageInterpolator(new ResourceBundleMessageInterpolator(new PlatformResourceBundleLocator("i18n/validation/messages" )))
-			.buildValidatorFactory()
-			.getValidator();
+		LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+		localValidatorFactoryBean.setValidationMessageSource(messageSource);
+		return localValidatorFactoryBean;
 	}
-
 }

@@ -6,7 +6,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BaseMessageSource {
+public class SimpleMessageSource {
 
 	@Autowired
 	private MessageSource messageSource;
@@ -16,7 +16,7 @@ public class BaseMessageSource {
 	}
 
 	public String getMessage(String code, Object[] args) {
-		return this.getMessage(code, null, null);
+		return this.getMessage(code, args, null);
 	}
 
 	public String getMessage(String code, Object[] args, String defaultMessage) {
