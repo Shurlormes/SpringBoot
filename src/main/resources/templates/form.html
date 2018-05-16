@@ -43,6 +43,14 @@
 			</tr>
 
 			<tr>
+				<td th:text="#{form.label.age}"></td>
+				<td>
+					<input type="number" th:field="*{age}" >
+				</td>
+				<td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
+			</tr>
+
+			<tr>
 				<td><button type="submit" th:text="#{form.submit.button}"></button></td>
 			</tr>
 		</table>
