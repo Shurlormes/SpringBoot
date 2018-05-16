@@ -6,6 +6,8 @@ import javax.validation.constraints.Size;
 
 public class UserInfo {
 
+	private Long userInfoId;
+
 	@NotNull(message = "{form.error.name.not.null}")
 	@Size(min = 2, max = 30, message = "{form.error.name.size}")
 	private String name;
@@ -20,6 +22,16 @@ public class UserInfo {
 
 	@Size(max = 50, message = "{form.error.address.max.size}")
 	private String address;
+
+	private Integer age;
+
+	public Long getUserInfoId() {
+		return userInfoId;
+	}
+
+	public void setUserInfoId(Long userInfoId) {
+		this.userInfoId = userInfoId;
+	}
 
 	public String getName() {
 		return name;
@@ -53,13 +65,23 @@ public class UserInfo {
 		this.address = address;
 	}
 
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "UserInfo{" +
-			"name='" + name + '\'' +
+			"userInfoId=" + userInfoId +
+			", name='" + name + '\'' +
 			", email='" + email + '\'' +
 			", telephone='" + telephone + '\'' +
 			", address='" + address + '\'' +
+			", age=" + age +
 			'}';
 	}
 }

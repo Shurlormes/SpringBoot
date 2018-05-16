@@ -4,11 +4,53 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 </head>
-<body>
+<body th:with="df=#{global.date.format}">
 
 <div>
-	<h2>Success!</h2>
+	<h2 th:text="#{home.message.welcome('张三')}"></h2>
+
+	<p th:text="#{home.message.welcome('李四')}"></p>
+
+	<p th:text="${#locale.country}"></p>
+
+	<p th:text="${message}"></p>
+
+	<p th:text="${#dates.format(date, df)}" ></p>
+
+	<a th:href="@{//baidu.com}" target="_blank">baidu</a>
+
+	<a th:href="@{/say/{data}(data=#{home.message.welcome('张三')}, userId=${userId})}" target="_blank">say</a>
+
+	<p>
+		Now you are looking at a <span th:text="'working web application'">template file</span>
+	</p>
+
+	<div th:text="${content}">..22.</div><br>
+	<div th:text="1_1">default asdasd</div><br>
+
+	<div th:text="${21} % 2 ne 0">asdasd</div><br>
+
+	<div th:text="${userId != null} ? _ ">asdasd</div><br>
+	<div th:text="${userId} ?: _ ">2zs</div><br>
+
+	<div th:text="${#numbers.formatInteger(32323, 3, 'COMMA')}"></div><br>
+
+	<div th:text="${#numbers.formatDecimal(3434342.545, 3, 'COMMA', 2, 'POINT')}"></div><br>
+
+	<table>
+		<tr th:each="userInfo,status : ${userInfoList}" th:style="${status.odd} ? 'background: brown;'">
+			<td th:text="${userInfo.name}"></td>
+			<td th:text="${userInfo.email}"></td>
+			<td th:text="${userInfo.telephone}"></td>
+			<td th:text="${userInfo.address}"></td>
+		</tr>
+	</table>
+
+
+	<div th:if="${userInfoList.size()} lt 1">No data</div>
 </div>
+
+<div th:insert="~{copy :: copy}"></div>
 
 </body>
 </html>

@@ -24,6 +24,10 @@ public class IndexController {
 		if (bindingResult.hasErrors()) {
 			return "form";
 		}
+
+
+
+
 		return "redirect:/hello";
 	}
 }
