@@ -6,6 +6,39 @@
 </head>
 <body th:with="df=#{global.date.format}">
 
+<table>
+	<tr th:each="userInfo,status : ${userInfoList}" th:style="${status.odd} ? 'background: yellow;'">
+		<td th:text="${userInfo.name}"></td>
+		<td th:text="${userInfo.email}"></td>
+		<td th:text="${userInfo.telephone}"></td>
+		<td th:text="${userInfo.address}"></td>
+	</tr>
+</table>
+<br/>
+
+<table>
+	<tr th:each="userInfo,status : ${userInfoPage.list}" th:style="${status.odd} ? 'background: yellow;'">
+		<td th:text="${userInfo.name}"></td>
+		<td th:text="${userInfo.email}"></td>
+		<td th:text="${userInfo.telephone}"></td>
+		<td th:text="${userInfo.address}"></td>
+	</tr>
+</table>
+
+<table>
+	<tr th:if="${#arrays.length(userInfoPage.list)} gt 0" th:align="center">
+		<td th:width="120">
+			<a th:if="${userInfoPage.hasPreviousPage}" th:href="@{hello(page=${userInfoPage.prePage})}">Previous Page</a>
+		</td>
+		<td th:width="120">
+			<span th:text="${userInfoPage.pageNum}"></span>/<span th:text="${userInfoPage.pages}"></span>
+		</td>
+		<td th:width="120">
+			<a th:if="${userInfoPage.hasNextPage}" th:href="@{hello(page=${userInfoPage.nextPage})}">Next Page</a>
+		</td>
+	</tr>
+</table>
+
 <div>
 	<h2 th:text="#{home.message.welcome('张三')}"></h2>
 
@@ -37,17 +70,6 @@
 
 	<div th:text="${#numbers.formatDecimal(3434342.545, 3, 'COMMA', 2, 'POINT')}"></div><br>
 
-	<table>
-		<tr th:each="userInfo,status : ${userInfoList}" th:style="${status.odd} ? 'background: brown;'">
-			<td th:text="${userInfo.name}"></td>
-			<td th:text="${userInfo.email}"></td>
-			<td th:text="${userInfo.telephone}"></td>
-			<td th:text="${userInfo.address}"></td>
-		</tr>
-	</table>
-
-
-	<div th:if="${userInfoList.size()} lt 1">No data</div>
 </div>
 
 <div th:insert="~{copy :: copy}"></div>

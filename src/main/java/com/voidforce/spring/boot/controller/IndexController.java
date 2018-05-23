@@ -1,7 +1,7 @@
 package com.voidforce.spring.boot.controller;
 
 import com.voidforce.spring.boot.bean.UserInfo;
-import com.voidforce.spring.mapper.UserInfoMapper;
+import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	@Autowired
-	private UserInfoMapper userInfoMapper;
+	private UserInfoService userInfoService;
 
 	@GetMapping("")
 	public String showForm(Model model, UserInfo userInfo) {
@@ -30,7 +30,7 @@ public class IndexController {
 			return "form";
 		}
 
-		userInfoMapper.insert(userInfo);
+		userInfoService.insert(userInfo);
 
 		return "redirect:/hello";
 	}

@@ -1,13 +1,15 @@
 package com.voidforce.spring.boot.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.voidforce.spring.boot.bean.UserInfo;
+import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
 import com.voidforce.spring.boot.service.common.SimpleMessageSource;
-import com.voidforce.spring.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -17,7 +19,7 @@ import java.util.List;
 public class HelloController {
 
 	@Autowired
-	private UserInfoMapper userInfoMapper;
+	private UserInfoService userInfoService;
 
 	@Autowired
 	private SimpleMessageSource simpleMessageSource;
@@ -29,16 +31,18 @@ public class HelloController {
 	}
 
 	@GetMapping("/hello")
-	public String hello(Model model) {
+	public String hello(Model model, @RequestParam(required = false, defaultValue = "1") Integer page) {
 		model.addAttribute("message", simpleMessageSource.getMessage("home.message.welcome", new String[]{"From Controller"}));
 		model.addAttribute("date", new Date());
 		model.addAttribute("userId", "00001111");
 		model.addAttribute("content", "你好世界");
 
+		List<UserInfo> userInfoList = userInfoService.findAll();
 
-		List<UserInfo> userInfoList = userInfoMapper.getAll();
+		PageInfo<UserInfo> userInfoPage = userInfoService.findAllForPage(page, 1);
 
 		model.addAttribute("userInfoList", userInfoList);
+		model.addAttribute("userInfoPage", userInfoPage);
 		return "hello";
 	}
 }
