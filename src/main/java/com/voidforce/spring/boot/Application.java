@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@MapperScan("com.voidforce.spring.mapper")
+@MapperScan("com.voidforce.spring.boot.mapper")
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

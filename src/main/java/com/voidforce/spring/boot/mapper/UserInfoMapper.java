@@ -1,4 +1,4 @@
-package com.voidforce.spring.mapper;
+package com.voidforce.spring.boot.mapper;
 
 import com.voidforce.spring.boot.bean.UserInfo;
 import org.apache.ibatis.annotations.Insert;

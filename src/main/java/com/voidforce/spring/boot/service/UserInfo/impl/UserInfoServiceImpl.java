@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.voidforce.spring.boot.bean.UserInfo;
 import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
-import com.voidforce.spring.mapper.UserInfoMapper;
+import com.voidforce.spring.boot.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
