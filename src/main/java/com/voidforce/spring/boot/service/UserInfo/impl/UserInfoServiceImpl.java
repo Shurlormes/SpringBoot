@@ -3,9 +3,10 @@ package com.voidforce.spring.boot.service.UserInfo.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.voidforce.spring.boot.bean.UserInfo;
-import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
 import com.voidforce.spring.boot.mapper.UserInfoMapper;
+import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
+	@Cacheable(value = "UserInfoList", keyGenerator = "simpleKeyGenerator")
 	public List<UserInfo> findAll() {
 		return userInfoMapper.findAll();
 	}
