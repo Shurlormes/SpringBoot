@@ -1,7 +1,7 @@
 package com.voidforce.spring.boot.controller;
 
 import com.voidforce.spring.boot.bean.UserInfo;
-import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
+import com.voidforce.spring.boot.service.userInfo.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

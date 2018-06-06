@@ -1,10 +1,10 @@
-package com.voidforce.spring.boot.service.UserInfo.impl;
+package com.voidforce.spring.boot.service.userInfo.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.voidforce.spring.boot.bean.UserInfo;
 import com.voidforce.spring.boot.mapper.UserInfoMapper;
-import com.voidforce.spring.boot.service.UserInfo.UserInfoService;
+import com.voidforce.spring.boot.service.userInfo.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void insert(UserInfo userInfo) {
 		userInfoMapper.insert(userInfo);
+		System.out.println(userInfo.getUserInfoId());
 	}
 
 	@Override
 	@Cacheable(value = "UserInfoList", keyGenerator = "simpleKeyGenerator")
 	public List<UserInfo> findAll() {
+		return userInfoMapper.findAll();
+	}
+
+	@Cacheable(value = "UserInfoListAnother", keyGenerator = "simpleKeyGenerator")
+	public List<UserInfo> findAllAnother(UserInfo userInfo) {
 		return userInfoMapper.findAll();
 	}
 

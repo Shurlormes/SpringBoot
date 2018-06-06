@@ -1,10 +1,7 @@
 package com.voidforce.spring.boot.mapper;
 
 import com.voidforce.spring.boot.bean.UserInfo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,5 +20,6 @@ public interface UserInfoMapper {
 
 	@Insert(" INSERT INTO USER_INFO(NAME, EMAIL, TELEPHONE, ADDRESS, AGE) " +
 		" VALUES(#{name}, #{email}, #{telephone}, #{address}, #{age})")
+	@Options(useGeneratedKeys = true, keyProperty = "userInfoId")
 	void insert(UserInfo userInfo);
 }
