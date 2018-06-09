@@ -4,7 +4,6 @@ import com.voidforce.spring.boot.bean.UserInfo;
 import com.voidforce.spring.boot.common.bean.HashMapResult;
 import com.voidforce.spring.boot.service.userInfo.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +20,6 @@ public class UserInfoController {
 	@GetMapping("")
 	public HashMapResult findAll() {
 		List<UserInfo> userInfoList = userInfoService.findAllAnother(new UserInfo());
-		if(!CollectionUtils.isEmpty(userInfoList)) {
-			return HashMapResult.failure("失败测试");
-		}
 		return HashMapResult.success(null, userInfoService.findAll());
 	}
 

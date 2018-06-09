@@ -31,6 +31,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfoMapper.findAll();
 	}
 
+	@Override
 	@Cacheable(value = "UserInfoListAnother", keyGenerator = "simpleKeyGenerator")
 	public List<UserInfo> findAllAnother(UserInfo userInfo) {
 		return userInfoMapper.findAll();
