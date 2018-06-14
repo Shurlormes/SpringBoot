@@ -6,6 +6,10 @@
 </head>
 <body th:with="df=#{global.date.format}">
 
+<form th:action="@{/logout}" method="post">
+	<input type="submit" value="Sign Out" />
+</form>
+
 <table>
 	<tr th:each="userInfo,status : ${userInfoList}" th:style="${status.odd} ? 'background: yellow;'">
 		<td th:text="${userInfo.name}"></td>
@@ -40,9 +44,7 @@
 </table>
 
 <div>
-	<h2 th:text="#{home.message.welcome('张三')}"></h2>
-
-	<p th:text="#{home.message.welcome('李四')}"></p>
+	<h2 th:text="#{home.message.welcome(${userInfo.name})}"></h2>
 
 	<p th:text="${#locale.country}"></p>
 
@@ -52,7 +54,7 @@
 
 	<a th:href="@{//baidu.com}" target="_blank">baidu</a>
 
-	<a th:href="@{/say/{data}(data=#{home.message.welcome('张三')}, userId=${userId})}" target="_blank">say</a>
+	<a th:href="@{/say/{data}(data=#{home.message.welcome(${userInfo.name})}, userId=${userId})}" target="_blank">say</a>
 
 	<p>
 		Now you are looking at a <span th:text="'working web application'">template file</span>

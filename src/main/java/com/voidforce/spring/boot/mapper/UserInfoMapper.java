@@ -12,14 +12,27 @@ public interface UserInfoMapper {
 		@Result(property = "userInfoId", column = "USER_INFO_ID"),
 		@Result(property = "name", column = "NAME"),
 		@Result(property = "email", column = "EMAIL"),
+		@Result(property = "password", column = "PASSWORD"),
 		@Result(property = "telephone", column = "TELEPHONE"),
 		@Result(property = "address", column = "ADDRESS"),
 		@Result(property = "age", column = "AGE")
 	})
 	List<UserInfo> findAll();
 
-	@Insert(" INSERT INTO USER_INFO(NAME, EMAIL, TELEPHONE, ADDRESS, AGE) " +
+	@Insert("INSERT INTO USER_INFO(NAME, EMAIL, TELEPHONE, ADDRESS, AGE) " +
 		" VALUES(#{name}, #{email}, #{telephone}, #{address}, #{age})")
 	@Options(useGeneratedKeys = true, keyProperty = "userInfoId")
 	void insert(UserInfo userInfo);
+
+	@Select("SELECT * FROM USER_INFO WHERE EMAIL = #{email}")
+	@Results({
+		@Result(property = "userInfoId", column = "USER_INFO_ID"),
+		@Result(property = "name", column = "NAME"),
+		@Result(property = "email", column = "EMAIL"),
+		@Result(property = "password", column = "PASSWORD"),
+		@Result(property = "telephone", column = "TELEPHONE"),
+		@Result(property = "address", column = "ADDRESS"),
+		@Result(property = "age", column = "AGE")
+	})
+	UserInfo getByEmail(String email);
 }

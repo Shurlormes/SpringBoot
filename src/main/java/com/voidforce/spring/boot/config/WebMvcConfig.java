@@ -2,6 +2,7 @@ package com.voidforce.spring.boot.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -19,5 +20,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.allowedMethods("*")
 			//跨域允许时间
 			.maxAge(3600);
+	}
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login");
 	}
 }

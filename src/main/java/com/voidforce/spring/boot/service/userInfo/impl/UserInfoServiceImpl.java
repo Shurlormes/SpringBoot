@@ -26,6 +26,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
+	public UserInfo getByEmail(String email) {
+		return userInfoMapper.getByEmail(email);
+	}
+
+	@Override
 	@Cacheable(value = "UserInfoList", keyGenerator = "simpleKeyGenerator")
 	public List<UserInfo> findAll() {
 		return userInfoMapper.findAll();

@@ -9,6 +9,8 @@ public interface UserInfoService {
 
 	void insert(UserInfo userInfo);
 
+	UserInfo getByEmail(String email);
+
 	List<UserInfo> findAll();
 
 	List<UserInfo> findAllAnother(UserInfo userInfo);
