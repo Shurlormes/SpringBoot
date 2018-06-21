@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<div th:fragment="copy">
+	&copy; 2018 Void Force
+</div>
+
+<div th:fragment="logout">
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+</div>
+
+<div th:fragment="language">
+	<table>
+		<tr>
+			<td>
+				<form action="/language/changeSessionLanguage" method="get">
+					<input name="lang" type="hidden" value="zh"  />
+					<button>Chinese</button>
+				</form>
+			</td>
+			<td>
+				<form action="/language/changeSessionLanguage" method="get">
+					<input name="lang" type="hidden" value="en" />
+					<button>English</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>

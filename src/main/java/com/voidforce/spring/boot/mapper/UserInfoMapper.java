@@ -19,8 +19,8 @@ public interface UserInfoMapper {
 	})
 	List<UserInfo> findAll();
 
-	@Insert("INSERT INTO USER_INFO(NAME, EMAIL, TELEPHONE, ADDRESS, AGE) " +
-		" VALUES(#{name}, #{email}, #{telephone}, #{address}, #{age})")
+	@Insert("INSERT INTO USER_INFO(NAME, EMAIL, PASSWORD, TELEPHONE, ADDRESS, AGE) " +
+		" VALUES(#{name}, #{email}, #{password}, #{telephone}, #{address}, #{age})")
 	@Options(useGeneratedKeys = true, keyProperty = "userInfoId")
 	void insert(UserInfo userInfo);
 

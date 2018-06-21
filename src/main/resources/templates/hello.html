@@ -6,10 +6,8 @@
 </head>
 <body th:with="df=#{global.date.format}">
 
-<form th:action="@{/logout}" method="post">
-	<input type="submit" value="Sign Out" />
-</form>
 
+<div th:insert="~{common :: logout}"></div>
 <table>
 	<tr th:each="userInfo,status : ${userInfoList}" th:style="${status.odd} ? 'background: yellow;'">
 		<td th:text="${userInfo.name}"></td>
@@ -74,7 +72,7 @@
 
 </div>
 
-<div th:insert="~{copy :: copy}"></div>
+<div th:insert="~{common :: copy}"></div>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.voidforce.spring.boot.controller;
 
 import com.voidforce.spring.boot.bean.UserInfo;
 import com.voidforce.spring.boot.service.userInfo.UserInfoService;
+import com.voidforce.spring.boot.util.EncodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,7 @@ public class IndexController {
 		if (bindingResult.hasErrors()) {
 			return "form";
 		}
-
+		userInfo.setPassword(EncodeUtil.encodeByBCrypt(userInfo.getPassword()));
 		userInfoService.insert(userInfo);
 
 		return "redirect:/hello";

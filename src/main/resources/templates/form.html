@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 </head>
-<body>
-
-	<h2 th:text="#{home.message.welcome('')}"></h2>
+<body th:with="user=${session.SPRING_SECURITY_CONTEXT.authentication.principal}">
+	<h2 th:text="#{home.message.welcome(${user.name})}"></h2>
+	<div th:insert="~{common :: logout}"></div>
 
 	<form th:action="@{/}" th:object="${userInfo}" method="post">
 		<table>
@@ -24,6 +24,14 @@
 					<input type="text" th:field="*{email}" >
 				</td>
 				<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+			</tr>
+
+			<tr>
+				<td th:text="#{form.label.password}"></td>
+				<td>
+					<input type="text" th:field="*{password}" >
+				</td>
+				<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
 			</tr>
 
 			<tr>
@@ -57,22 +65,7 @@
 
 	</form>
 
-	<table>
-		<tr>
-			<td>
-				<form action="/language/changeSessionLanguage" method="get">
-					<input name="lang" type="hidden" value="zh"  />
-					<button>Chinese</button>
-				</form>
-			</td>
-			<td>
-				<form action="/language/changeSessionLanguage" method="get">
-					<input name="lang" type="hidden" value="en" />
-					<button>English</button>
-				</form>
-			</td>
-		</tr>
-	</table>
+<div th:insert="~{common :: language}"></div>
 
 </body>
 </html>
