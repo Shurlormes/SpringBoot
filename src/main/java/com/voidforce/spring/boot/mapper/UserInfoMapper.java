@@ -8,15 +8,18 @@ import java.util.List;
 public interface UserInfoMapper {
 
 	@Select("SELECT * FROM USER_INFO")
-	@Results({
-		@Result(property = "userInfoId", column = "USER_INFO_ID"),
-		@Result(property = "name", column = "NAME"),
-		@Result(property = "email", column = "EMAIL"),
-		@Result(property = "password", column = "PASSWORD"),
-		@Result(property = "telephone", column = "TELEPHONE"),
-		@Result(property = "address", column = "ADDRESS"),
-		@Result(property = "age", column = "AGE")
-	})
+	@Results(
+		id = "simpleMapper",
+		value = {
+			@Result(property = "userInfoId", column = "USER_INFO_ID"),
+			@Result(property = "name", column = "NAME"),
+			@Result(property = "email", column = "EMAIL"),
+			@Result(property = "password", column = "PASSWORD"),
+			@Result(property = "telephone", column = "TELEPHONE"),
+			@Result(property = "address", column = "ADDRESS"),
+			@Result(property = "age", column = "AGE")
+		}
+	)
 	List<UserInfo> findAll();
 
 	@Insert("INSERT INTO USER_INFO(NAME, EMAIL, PASSWORD, TELEPHONE, ADDRESS, AGE) " +
@@ -25,14 +28,6 @@ public interface UserInfoMapper {
 	void insert(UserInfo userInfo);
 
 	@Select("SELECT * FROM USER_INFO WHERE EMAIL = #{email}")
-	@Results({
-		@Result(property = "userInfoId", column = "USER_INFO_ID"),
-		@Result(property = "name", column = "NAME"),
-		@Result(property = "email", column = "EMAIL"),
-		@Result(property = "password", column = "PASSWORD"),
-		@Result(property = "telephone", column = "TELEPHONE"),
-		@Result(property = "address", column = "ADDRESS"),
-		@Result(property = "age", column = "AGE")
-	})
+	@ResultMap("simpleMapper")
 	UserInfo getByEmail(String email);
 }

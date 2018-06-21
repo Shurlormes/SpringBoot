@@ -1,15 +1,12 @@
 package com.voidforce.spring.boot.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 
-public class UserInfo implements UserDetails {
+public class UserInfo extends BaseUser {
 
 	private Long userInfoId;
 
@@ -30,9 +27,8 @@ public class UserInfo implements UserDetails {
 
 	private Integer age;
 
+	@JsonIgnore
 	private String password;
-
-	private Collection<GrantedAuthority> authorities;
 
 	public Long getUserInfoId() {
 		return userInfoId;
@@ -82,51 +78,13 @@ public class UserInfo implements UserDetails {
 		this.age = age;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setAuthorities(Collection<GrantedAuthority> authorities) {
-		this.authorities = authorities;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
-
 	@Override
 	public String getPassword() {
 		return password;
 	}
 
 	@Override
-	@JsonIgnore
-	public String getUsername() {
-		return email;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isEnabled() {
-		return true;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

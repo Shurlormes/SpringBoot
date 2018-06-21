@@ -6,6 +6,12 @@
 </head>
 <body th:with="user=${session.SPRING_SECURITY_CONTEXT.authentication.principal}">
 	<h2 th:text="#{home.message.welcome(${user.name})}"></h2>
+
+	<h3>你拥有的权限有：</h3>
+	<ul>
+		<li th:each="role : ${user.roles}" th:text="${role}"></li>
+	</ul>
+
 	<div th:insert="~{common :: logout}"></div>
 
 	<form th:action="@{/}" th:object="${userInfo}" method="post">
