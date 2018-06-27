@@ -18,6 +18,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.allowCredentials(true)
 			//设置允许的方法
 			.allowedMethods("*")
+			//设置允许的请求头
+			.allowedHeaders("*")
 			//跨域允许时间
 			.maxAge(3600);
 	}

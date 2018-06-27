@@ -14,6 +14,8 @@ public class BaseUser implements UserDetails {
 
 	private String password;
 
+	private List<String> roles;
+
 	private Collection<GrantedAuthority> authorities;
 
 	@Override
@@ -41,6 +43,10 @@ public class BaseUser implements UserDetails {
 
 	public void setAuthorities(Collection<GrantedAuthority> authorities) {
 		this.authorities = authorities;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 
 	public List<String> getRoles() {
